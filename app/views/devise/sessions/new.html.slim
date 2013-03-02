@@ -1,0 +1,12 @@
+div class="row"
+  div class="large-8 large-offset-2 columns"
+    h2
+      ' Sign in to Karotz-CI
+    h5 class="subheader"
+      ' Don't have an account?
+      = link_to('Sign up', new_user_registration_path)
+
+    = simple_form_for(resource, url: session_path(resource_name)) do |form|
+      = form.input :email, autofocus: true
+      = form.input :password
+      = form.button :submit, 'Sign in'

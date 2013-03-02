@@ -1,0 +1,6 @@
+div class="row"
+  div class="twelve columns"
+    - flash.each do |type, message|
+      div data-alert="" class="alert-#{type}-box"
+        = message
+        = link_to('×', '#', class: 'close')

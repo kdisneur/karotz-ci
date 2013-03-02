@@ -1,0 +1,20 @@
+div class="row"
+  div class="large-4 columns"
+    ul class="side-nav"
+      li class="active"
+        | Your Karotz
+        = link_to(new_karotz_rabbit_path, class: 'm-karotz-nav--add-karotz') do 
+          i class="general-enclosed foundicon-plus"
+          
+      li class="divider"
+      - if current_user.karotz_rabbits.present?
+        - current_user.karotz_rabbits.each do |karotz|
+          li = link_to(karotz.name, edit_karotz_rabbit_path(karotz))
+      - else
+        div class="panel"
+          ' You have no karotz for now,
+          =' link_to('add a new one', new_karotz_rabbit_path)
+          | and profit of Karotz-CI
+
+  div class="large-8 columns"
+    = yield(:content)

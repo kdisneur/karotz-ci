@@ -1,0 +1,18 @@
+= content_for(:content) do
+  h1
+    | Edit #{karotz_rabbit.name} karrotz
+
+  div class="panel"
+    div class="row"
+      div class="large-12 columns"
+        p
+          ' You can use the following url as callback in #{karotz_rabbit.continuous_integration}:
+      p class="m-karotz-rabbits--callback"
+        span class="m-karotz-rabbits--callback-url"
+          = karotz_rabbit_callbacks_url(karotz_rabbit, token: karotz_rabbit.token)
+        = link_to('#', class: 'm-karotz-rabbits--callback-copy', 'data-clipboard' => '', 'data-clipboard-text' => karotz_rabbit_callbacks_url(karotz_rabbit, token: karotz_rabbit.token)) do
+          i class="general-enclosed foundicon-paper-clip"
+
+  = render('form')
+
+= render 'karotz_rabbits/layout'

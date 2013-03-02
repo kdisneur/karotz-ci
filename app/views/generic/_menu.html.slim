@@ -1,0 +1,14 @@
+nav class="top-bar"
+  ul class="title-area"
+    li class="name"
+      h1
+        = link_to('Karotz CI', root_path, title: 'Karotz more than a rabbit')
+    li class="toggle-topbar menu-icon"
+      a href="#"
+        span
+          | Menu
+
+  - if current_user
+    = render 'generic/menu/logged'
+  - else
+    = render 'generic/menu/not_logged'

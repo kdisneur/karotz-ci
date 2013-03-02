@@ -1,0 +1,8 @@
+section class="top-bar-section"
+  ul class="right"
+    li class="divider"
+    li class="has-dropdown"
+      = link_to(gravatar_image_tag(current_user.email, alt: current_user.email), '#')
+      ul class="dropdown"
+        li
+          = link_to('Sign out', destroy_user_session_path, method: :delete)

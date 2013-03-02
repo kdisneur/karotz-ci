@@ -1,0 +1,22 @@
+= simple_form_for(karotz_rabbit, html: { class: 'custom' }) do |form|
+  = form.input(:name)
+  = form.input(:install_id)
+
+  div class="row"
+    - if karotz_rabbit.new_record?
+      div class="large-12 columns"
+        = form.button(:submit, 'Save the karrotz', class: 'right')
+    - else
+      div class="large-6 columns"
+        = button_to('Remove it', '#', class: 'small alert button', 'data-trigger-popup' => '')
+      div class="large-6 columns"
+        = form.button(:submit, 'Save the karrotz', class: 'right')
+
+      ol class="joyride-list" data-joyride=""
+        li data-text="Cancel" data-options="tipAnimation: fade;"
+          h4
+            | Are you sure ?
+          p
+            | If you confirm the deletion, there is no way to rollback.
+
+          = link_to("Yes, I'm sure", karotz_rabbit_path(karotz_rabbit), method: :delete, class: 'small right alert button')

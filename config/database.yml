@@ -1,0 +1,6 @@
+development:
+  adapter: mysql2
+  database: karotz-ci_development
+  user: root
+  pool: 5
+  timeout: 5000
