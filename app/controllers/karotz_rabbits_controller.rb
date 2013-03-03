@@ -16,25 +16,28 @@ class KarotzRabbitsController < RegisteredController
     karotz_rabbit.user = current_user
 
     if karotz_rabbit.save
-      redirect_to :karotz_rabbits
+      flash[:notice] = "#{karotz_rabbit.name} has been successfully created"
+      redirect_to(edit_karotz_rabbit_path(karotz_rabbit))
     else
-      render :new
+      render(:new)
     end
   end
 
   def update
     if karotz_rabbit.save
-      redirect_to :karotz_rabbits
+      flash[:notice] = "#{karotz_rabbit.name} has been successfully updated"
+      redirect_to(edit_karotz_rabbit_path(karotz_rabbit))
     else
-      render :edit
+      render(:edit)
     end
   end
 
   def destroy
     if karotz_rabbit.destroy
-      redirect_to :karotz_rabbits
+      flash[:notice] = "#{karotz_rabbit.name} has been successfully deleted"
+      redirect_to(:karotz_rabbits)
     else
-      render :edit
+      render(:edit)
     end
   end
 
