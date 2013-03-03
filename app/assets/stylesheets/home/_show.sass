@@ -1,3 +1,6 @@
+.m-preview.panel.callout
+  margin-bottom:  0px
+
 .m-preview--signup-button
   position: absolute
   right:    10px
@@ -10,3 +13,37 @@
     margin-right: 10px
 .m-preview--image
   margin: auto
+
+.m-presentation
+  background:     #f8f8f8
+  padding-top:    100px
+  padding-bottom: 100px
+  .orbit-bullets
+    position: absolute
+    top:      -25px
+    li
+      +transition-property(all)
+      +transition-duration(0.5s)
+      +opacity(0.3)
+      height:           10px
+      width:            10px
+      background-color: $primary-color
+      border-color:     $primary-color
+      &.active
+        +opacity(1)
+  .orbit-container .orbit-slides-container > * .orbit-caption
+    +opacity(.85)
+    background-color: $primary-color
+  .orbit-slide-number,.orbit-timer,.orbit-next,.orbit-prev
+    display: none
+
+.m-presentation--slider
+  height: 505px
+
+.m-social
+  padding-bottom: 50px
+  padding-top:    50px
+  p
+    font-size: .8em
+  a
+    font-size: 1.8em

@@ -9,4 +9,4 @@ div class="row"
     = simple_form_for(resource, url: session_path(resource_name)) do |form|
       = form.input :email, autofocus: true
       = form.input :password
-      = form.button :submit, 'Sign in'
+      = form.button :submit, 'Sign in', class: 'right'
