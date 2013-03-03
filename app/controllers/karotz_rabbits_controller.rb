@@ -1,4 +1,4 @@
-class KarotzRabbitsController < ApplicationController
+class KarotzRabbitsController < RegisteredController
 
   def karotz_rabbit
     if (id = params[:id])
@@ -29,7 +29,7 @@ class KarotzRabbitsController < ApplicationController
       render :edit
     end
   end
-  
+
   def destroy
     if karotz_rabbit.destroy
       redirect_to :karotz_rabbits
