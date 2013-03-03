@@ -12,3 +12,19 @@
 # prevent your application from stopping cleanly or starting at all.
 # Application start and stop is subject to different timeouts
 # throughout the system.
+
+# FIX: INTERCATIVE PROMPT DOES NOT WORK!
+if [ ! -e ${OPENSHIFT_DATA_DIR}/.karotz ]; then
+  echo "Initialization of karotz api file"
+
+  echo -n 'Enter the karotz api key: '
+  read api_key
+  echo -n 'Enter the karotz secret key: '
+  read -s secret_key
+
+  echo "export KAROTZ_APIKEY='${api_key}'"    >> ${OPENSHIFT_DATA_DIR}/.karotz
+  echo "export KAROTZ_SECRET='${secret_key}'" >> ${OPENSHIFT_DATA_DIR}/.karotz
+fi
+
+echo "Load the karotz api file"
+source ${OPENSHIFT_DATA_DIR}/.karotz
