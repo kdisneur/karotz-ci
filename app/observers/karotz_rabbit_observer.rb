@@ -1,6 +1,7 @@
 class KarotzRabbitObserver < ActiveRecord::Observer
 
   def after_create(model)
+    generate_token!(model)
     update_campaign_list(model)
   end
 
@@ -9,6 +10,11 @@ class KarotzRabbitObserver < ActiveRecord::Observer
   end
 
 private
+
+  def generate_token!(model)
+    model.token = Digest::SHA1.hexdigest("#{model.id}--#{model.user_id}")
+    model.save
+  end
 
   def update_campaign_list(model)
     if ENV['MAILCHIMP_APIKEY']

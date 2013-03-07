@@ -7,12 +7,13 @@ class CallbackStatus
     self.project = options[:project]
     self.result  = options[:result]
   end
-  
-  def passed?
-    self.result == 'passed'
-  end
-  
+
   def failed?
     ! self.passed?
   end
+
+  def passed?
+    self.result == 'passed'
+  end
+
 end

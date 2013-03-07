@@ -15,9 +15,14 @@ gem 'unicorn'
 group :assets do
   gem 'compass-rails'
   gem 'coffee-rails',    '~> 3.2.1'
+  gem 'foundation-icons-sass-rails'
   gem 'jquery-rails'
   gem 'sass-rails',      '~> 3.2.3'
   gem 'uglifier',        '>= 1.0.3'
   gem 'zurb-foundation', '~> 4.0.0'
-  gem 'foundation-icons-sass-rails'
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
 end
