@@ -23,6 +23,7 @@ group :assets do
 end
 
 group :test do
+  gem 'coveralls', require: false
   gem 'rspec-rails'
   gem 'shoulda-matchers'
 end
