@@ -1,0 +1,10 @@
+before_script:
+  - "sh -c 'bundle install && bundle exec rake db:create db:migrate'"
+env:
+  - DB=mysql
+git:
+  submodules: false
+language: ruby
+rvm:
+  - 1.9.3
+script: 'bundle exec rspec spec'
