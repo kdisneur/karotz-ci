@@ -1,4 +1,4 @@
-# Welcome to Karotz-CI [![Build Status](https://travis-ci.org/kdisneur/karotz-ci.png?branch=master)](https://travis-ci.org/kdisneur/karotz-ci)
+# Welcome to Karotz-CI [![Build Status](https://travis-ci.org/kdisneur/karotz-ci.png?branch=master)](https://travis-ci.org/kdisneur/karotz-ci) [![Code Climate](https://codeclimate.com/github/kdisneur/karotz-ci.png)](https://codeclimate.com/github/kdisneur/karotz-ci)
 
 It's a project to make you happy.
 
