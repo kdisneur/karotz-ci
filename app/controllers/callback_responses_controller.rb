@@ -8,7 +8,7 @@ class CallbackResponsesController < ::ApplicationController
   def create
     if callback
       callback_status = CallbackStatusService.new.build(callback, params)
-      ci_service      = ContinuousIntegrationService::Proxy.get(callback.continuous_integration)
+      ci_service      = ContinuousIntegrationService::Factory.build(callback.continuous_integration)
       ci_service.run(callback.karotz_rabbit, callback_status)
 
       render nothing: true
