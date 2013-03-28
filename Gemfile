@@ -13,8 +13,8 @@ gem 'slim'
 gem 'unicorn'
 
 group :assets do
-  gem 'compass-rails'
   gem 'coffee-rails',    '~> 3.2.1'
+  gem 'compass-rails'
   gem 'foundation-icons-sass-rails'
   gem 'jquery-rails'
   gem 'sass-rails',      '~> 3.2.3'
