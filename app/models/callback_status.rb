@@ -15,5 +15,4 @@ class CallbackStatus
   def passed?
     self.result == 'passed'
   end
-
 end

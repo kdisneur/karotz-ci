@@ -17,7 +17,7 @@ class KarotzRabbitsController < RegisteredController
 
     if karotz_rabbit.save
       flash[:notice] = "#{karotz_rabbit.name} has been successfully created"
-      redirect_to(edit_karotz_rabbit_path(karotz_rabbit))
+      redirect_to(karotz_rabbit_path(karotz_rabbit))
     else
       render(:new)
     end
@@ -26,7 +26,7 @@ class KarotzRabbitsController < RegisteredController
   def update
     if karotz_rabbit.save
       flash[:notice] = "#{karotz_rabbit.name} has been successfully updated"
-      redirect_to(edit_karotz_rabbit_path(karotz_rabbit))
+      redirect_to(karotz_rabbit_path(karotz_rabbit))
     else
       render(:edit)
     end

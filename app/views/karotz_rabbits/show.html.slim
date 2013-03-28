@@ -1,0 +1,50 @@
+= content_for(:content) do
+  div class="row m-rabitz-resume"
+    div class="large-4 columns th radius"
+      = image_tag('karotz_rabbits/karotz.png', size: '200x200')
+    div class="large-8 columns m-rabitz-resume--informations"
+      h3
+        = karotz_rabbit.name
+      p
+        | Install id: #{karotz_rabbit.install_id}
+
+      ul class="button-group round even-1 right"
+        li
+          = link_to('Edit', edit_karotz_rabbit_path(karotz_rabbit), class: "button secondary")
+        li
+          = link_to('Remove', '#', :class => 'button alert', 'data-reveal-id' => 'm-rabitz-resume--deletion-modal')
+
+      div id="m-rabitz-resume--deletion-modal" class="reveal-modal"
+        div class="row"
+          div class="large-12 columns"
+            h2
+              | Are you sure?
+
+        div class="row"
+          div class="large-12 columns"
+            p
+              | If you confirm the deletion, there is no way to rollback.
+
+        div class="row"
+          div class="large-6 columns"
+            = link_to('Cancel', '#', class: 'close-reveal-modal small secondary button')
+          div class="large-6 columns"
+            = link_to("Yes, I'm sure", karotz_rabbit_path(karotz_rabbit), method: :delete, class: 'small right alert button')
+
+  div class="row"
+    div class="large-12 columns"
+      h2
+        | Webhooks
+
+  div class="row collapse"
+    = simple_form_for([karotz_rabbit, Callback.new], method: :post, html: { class: 'custom' }) do |form|
+      div class="small-9 columns"
+        = form.input :continuous_integration, label: false
+      div class="small-3 columns"
+        = form.submit class: 'button postfix m-callback-new--button', value: 'Add'
+
+  div class="row"
+    - if karotz_rabbit.callbacks.present?
+      = render karotz_rabbit.callbacks
+
+= render 'karotz_rabbits/layout'

@@ -1,0 +1,5 @@
+en:
+  enumerize:
+    continuous_integration:
+      semaphore_app: "Semaphore App"
+      travis_ci: "Travis-CI"

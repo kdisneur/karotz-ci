@@ -3,12 +3,14 @@ KarotzCI::Application.routes.draw do
 
   authenticated :user do
     root to: 'karotz_rabbits#index'
-    resources :karotz_rabbits
+    resources :karotz_rabbits do
+      resources :callbacks
+    end
   end
   root to: 'home#show'
 
   resources :karotz_rabbits do
-    resources :callbacks, only: [:create]
+    resources :callback_responses, only: [:create]
   end
 
   match '500.html', to: redirect('/500.html'), as: :error_path

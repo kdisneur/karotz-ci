@@ -3,6 +3,6 @@ require 'karotz/color'
 require 'karotz/language'
 
 module ContinuousIntegrationService
-  class SemaphoreApp < Base
+  class TravisCi < Base
   end
 end

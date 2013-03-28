@@ -1,0 +1,30 @@
+div class="panel"
+  div class="row"
+    div class="large-3 columns"
+      = image_tag("continuous_integration/#{callback.continuous_integration}.png", size: '122x122')
+    div class="large-9 columns"
+      p
+        | Token: #{callback.token}
+      div
+        = link_to('#', 'data-clipboard' => '', 'data-clipboard-text' => karotz_rabbit_callback_responses_url(callback.karotz_rabbit_id, token: callback.token)) do
+          | Copy the callback URL
+
+      div class="right m-callback--button"
+        = link_to('Remove', '#', :class => 'button alert round', 'data-reveal-id' => "m-callback--deletion-modal-#{callback.id}")
+
+div id="m-callback--deletion-modal-#{callback.id}" class="reveal-modal"
+  div class="row"
+    div class="large-12 columns"
+      h2
+        | Are you sure?
+
+  div class="row"
+    div class="large-12 columns"
+      p
+        | If you confirm the deletion, there is no way to rollback.
+
+  div class="row"
+    div class="large-6 columns"
+      = link_to('Cancel', '#', class: 'close-reveal-modal small secondary button')
+    div class="large-6 columns"
+      = link_to("Yes, I'm sure", karotz_rabbit_callback_path(callback.karotz_rabbit_id, callback.id), method: :delete, class: 'small right alert button')

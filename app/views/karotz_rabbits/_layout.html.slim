@@ -3,13 +3,14 @@ div class="row"
     ul class="side-nav"
       li class="active"
         | Your Karotz
-        = link_to(new_karotz_rabbit_path, class: 'm-karotz-nav--add-karotz') do 
+        = link_to(new_karotz_rabbit_path, class: 'm-karotz-nav--add-karotz') do
           i class="general-enclosed foundicon-plus"
-          
+
       li class="divider"
       - if current_user.karotz_rabbits.present?
         - current_user.karotz_rabbits.each do |karotz|
-          li = link_to(karotz.name, edit_karotz_rabbit_path(karotz))
+          li class="#{'active' if karotz.id.to_s == params[:id]}"
+            = link_to(karotz.name, karotz_rabbit_path(karotz))
       - else
         div class="panel"
           ' You have no karotz for now,

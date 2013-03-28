@@ -11,16 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130302140530) do
+ActiveRecord::Schema.define(:version => 20130318231900) do
+
+  create_table "callbacks", :force => true do |t|
+    t.string   "continuous_integration"
+    t.text     "token"
+    t.integer  "karotz_rabbit_id"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
 
   create_table "karotz_rabbits", :force => true do |t|
     t.string   "name"
     t.string   "install_id"
-    t.string   "continuous_integration"
-    t.text     "token"
     t.integer  "user_id"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
