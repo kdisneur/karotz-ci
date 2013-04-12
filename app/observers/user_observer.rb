@@ -12,7 +12,7 @@ private
     mailchimp = Hominid::API.new(ENV['MAILCHIMP_APIKEY'])
     list_id   = mailchimp.find_list_id_by_name('Users')
     info      = { KAROTZ_CNT: 0 }
-    mailchimp.list_subscribe(list_id, model.email, info, 'html', false, true, false, true)
+    mailchimp.list_subscribe(list_id, model.email, info, 'html', false, true, false, false)
   end
 
 end
