@@ -2,7 +2,7 @@ require 'karotz'
 require 'karotz/color'
 require 'karotz/language'
 
-module ContinuousIntegrationService
-  class SemaphoreApp < Base
+module ContinuousIntegrationServices
+  class TravisCi < Base
   end
 end

@@ -6,10 +6,18 @@ module CallbackStatusServices
       options        = {
         branch:  payload['branch'],
         project: payload['repository']['name'],
-        result:  payload['status_message'].downcase,
+        result:  convert_status_message(payload['status_message']),
       }
 
       CallbackStatus.new(options)
+    end
+
+  private
+
+    def convert_status_message(status_message)
+      status_message = status_message.downcase
+      status_message = 'passed' if status_message == 'fixed'
+      status_message
     end
   end
 end

@@ -4,6 +4,7 @@ gem 'rails', '3.2.11'
 
 gem 'devise'
 gem 'enumerize'
+gem 'figaro'
 gem 'gravatar_image_tag'
 gem 'hominid'
 gem 'karotz'

@@ -14,5 +14,7 @@
 /log/*.log
 /tmp
 environment_variables
+config/application.yml
+.DS_Store
 
 /coverage/*

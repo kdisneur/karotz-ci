@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.carouFredSel
 //= require foundation
 //= require vendor/custom.modernizr
 //= require ZeroClipboard
@@ -20,3 +21,10 @@
 //= require_self
 
 $(document).foundation();
+$(function() {
+  $('.m-presentation--slider').carouFredSel({
+    height:     '100%',
+    responsive: true,
+    width:      '100%'
+  })
+});

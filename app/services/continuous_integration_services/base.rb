@@ -2,7 +2,7 @@ require 'karotz'
 require 'karotz/color'
 require 'karotz/language'
 
-module ContinuousIntegrationService
+module ContinuousIntegrationServices
   class Base
     def run(karotz_rabbit, callback_status)
       Rails.logger.info(karotz_rabbit.inspect)

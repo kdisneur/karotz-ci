@@ -1,4 +1,4 @@
-module ContinuousIntegrationService
+module ContinuousIntegrationServices
   class Factory
     def self.build(service_name)
       class_name(service_name).constantize.new
@@ -7,7 +7,7 @@ module ContinuousIntegrationService
   private
 
     def self.class_name(service_name)
-      "continuous_integration_service/#{service_name}".camelize
+      "continuous_integration_services/#{service_name}".camelize
     end
   end
 end
