@@ -6,9 +6,9 @@ class User < ActiveRecord::Base
          :trackable,
          :validatable
 
-  attr_accessible :email, 
-                  :password, 
-                  :password_confirmation, 
+  attr_accessible :email,
+                  :password,
+                  :password_confirmation,
                   :remember_me
 
   has_many :karotz_rabbits

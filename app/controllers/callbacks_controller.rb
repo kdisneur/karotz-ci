@@ -1,5 +1,4 @@
 class CallbacksController < RegisteredController
-
   def callback
     karotz_rabbit = KarotzRabbit.find(params[:karotz_rabbit_id])
     if (id = params[:id])
@@ -30,5 +29,4 @@ class CallbacksController < RegisteredController
       render(:edit)
     end
   end
-
 end

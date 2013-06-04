@@ -1,5 +1,4 @@
 class CallbackResponsesController < ::ApplicationController
-
   def callback
     @callback ||= ::Callback.where(karotz_rabbit_id: params[:karotz_rabbit_id], token: params[:token]).first
   end

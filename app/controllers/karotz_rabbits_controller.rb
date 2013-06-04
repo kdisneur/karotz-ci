@@ -1,5 +1,4 @@
 class KarotzRabbitsController < RegisteredController
-
   def karotz_rabbit
     if (id = params[:id])
       @karotz_rabbit ||= KarotzRabbit.find(id)
@@ -40,5 +39,4 @@ class KarotzRabbitsController < RegisteredController
       render(:edit)
     end
   end
-
 end

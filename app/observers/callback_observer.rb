@@ -1,5 +1,4 @@
 class CallbackObserver < ActiveRecord::Observer
-
   def after_create(model)
     generate_token!(model)
   end

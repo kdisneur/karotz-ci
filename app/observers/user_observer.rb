@@ -1,5 +1,4 @@
 class UserObserver < ActiveRecord::Observer
-
   def after_create(model)
     create_in_campaign_list(model)
   end
@@ -14,5 +13,4 @@ private
     info      = { KAROTZ_CNT: 0 }
     mailchimp.list_subscribe(list_id, model.email, info, 'html', false, true, false, false)
   end
-
 end

@@ -26,7 +26,6 @@ module ContinuousIntegrationServices
         karotz.say(text: message)
         sleep 10
       end
-
     end
   end
 end
