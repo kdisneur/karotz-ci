@@ -5,7 +5,6 @@ require 'karotz/language'
 module ContinuousIntegrationServices
   class Base
     def run(karotz_rabbit, callback_status)
-      Rails.logger.info(karotz_rabbit.inspect)
       Karotz::Configuration.configure do |config|
         config.install_id = karotz_rabbit.install_id
         config.api_key    = ENV['KAROTZ_APIKEY']
