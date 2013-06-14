@@ -13,34 +13,4 @@
 # Application start and stop is subject to different timeouts
 # throughout the system.
 
-# KAROTZ
-# FIX: INTERCATIVE PROMPT DOES NOT WORK!
-if [ ! -e ${OPENSHIFT_DATA_DIR}/.karotz ]; then
-  echo "Initialization of karotz api file"
-
-  echo -n 'Enter the karotz api key: '
-  read api_key
-  echo -n 'Enter the karotz secret key: '
-  read -s secret_key
-
-  echo "export KAROTZ_APIKEY='${api_key}'"    >> ${OPENSHIFT_DATA_DIR}/.karotz
-  echo "export KAROTZ_SECRET='${secret_key}'" >> ${OPENSHIFT_DATA_DIR}/.karotz
-fi
-
-echo "Load the karotz api file"
-source ${OPENSHIFT_DATA_DIR}/.karotz
-
-
-# MAILCHIMP
-# FIX: INTERCATIVE PROMPT DOES NOT WORK!
-if [ ! -e ${OPENSHIFT_DATA_DIR}/.mailchimp ]; then
-  echo "Initialization of mailchimp file"
-
-  echo -n 'Enter the mailchimp api key: '
-  read -s api_key
-
-  echo "export MAILCHIMP_APIKEY='${api_key}'"    >> ${OPENSHIFT_DATA_DIR}/.mailchimp
-fi
-
-echo "Load the mailchimp api file"
-source ${OPENSHIFT_DATA_DIR}/.mailchimp
+source ${OPENSHIFT_DATA_DIR}/.env
