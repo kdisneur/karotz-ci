@@ -15,6 +15,7 @@
 /tmp
 environment_variables
 config/application.yml
+public/assets
 .DS_Store
 
 /coverage/*

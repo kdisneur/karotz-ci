@@ -14,6 +14,7 @@ gem 'slim'
 gem 'unicorn'
 
 group :assets do
+  gem 'asset_sync'
   gem 'coffee-rails',    '~> 3.2.1'
   gem 'compass-rails'
   gem 'foundation-icons-sass-rails'
