@@ -1,4 +1,5 @@
 namespace :deploy do
+  desc "sync variables environment to Open Shift"
   task :sync_variables_environment do
     Net::SSH.start(ENV['host'], nil) do |ssh|
       ssh.exec('echo > ${OPENSHIFT_DATA_DIR}/.env')
