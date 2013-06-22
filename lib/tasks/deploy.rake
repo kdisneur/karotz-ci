@@ -1,10 +1,15 @@
 namespace :deploy do
-  desc "sync variables environment to Open Shift"
-  task :sync_variables_environment do
-    Net::SSH.start(ENV['host'], nil) do |ssh|
-      ssh.exec('echo > ${OPENSHIFT_DATA_DIR}/.env')
-      Figaro.env.each { |key, value| ssh.exec("echo 'export #{key}=#{value}' >> ${OPENSHIFT_DATA_DIR}/.env") }
-      sleep 5
+  desc "sync environment variables to Open Shift"
+  task :sync_environment_variables do
+    file_path = Rails.root.join('tmp', 'environment_variables')
+    File.open(file_path, 'w') do |file|
+      Figaro.env.each { |key, value| file.puts("export #{key}=#{value}") }
     end
+
+    unless system("scp #{file_path} #{ENV['host']}:app-root/data/.env")
+      puts 'SCP failed'
+    end
+
+    File.delete(file_path)
   end
 end
