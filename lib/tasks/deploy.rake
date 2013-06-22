@@ -6,7 +6,7 @@ namespace :deploy do
       Figaro.env.each { |key, value| file.puts("export #{key}=#{value}") }
     end
 
-    unless system("scp #{file_path} #{ENV['host']}:app-root/data/.env")
+    unless system("scp #{file_path} #{ENV['host']}:app-root/data/.environment")
       puts 'SCP failed'
     end
 

@@ -13,4 +13,5 @@
 # Application start and stop is subject to different timeouts
 # throughout the system.
 
-source ${OPENSHIFT_DATA_DIR}/.env
+echo "load environment variables from ${OPENSHIFT_DATA_DIR}/.environment"
+. ${OPENSHIFT_DATA_DIR}/.environment
