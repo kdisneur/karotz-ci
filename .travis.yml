@@ -1,22 +1,23 @@
 before_script:
+  - cp config/database-ci.yml config/database.yml
+  - psql -c 'create database karotzci_test;' -U postgres
   - sh -c 'bundle install && bundle exec rake db:create db:migrate'
 after_success:
-  - gem install rhc
-  - git remote add openshift ${OPENSHIFT_REPOSITORY}
-  - echo 'Host karotzci-koboyz.rhcloud.com' >> ~/.ssh/config
+  - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+  - git remote add heroku git@heroku.com:${HEROKU_APP}.git
+  - echo 'Host heroku.com' >> ~/.ssh/config
   - echo '   StrictHostKeyChecking no' >> ~/.ssh/config
   - echo '   CheckHostIP no' >> ~/.ssh/config
   - echo '   UserKnownHostsFile=/dev/null' >> ~/.ssh/config
-  - ssh-keygen -t rsa -f ~/.ssh/travis -N ''
-  - rhc sshkey-add travis ~/.ssh/travis.pub -l "${OPENSHIFT_USER}" -p "${OPENSHIFT_PASSWORD}"
-  - git push openshift master
-  - rhc sshkey-remove travis -l "${OPENSHIFT_USER}" -p "${OPENSHIFT_PASSWORD}"
+  - heroku keys:clear
+  - yes | heroku keys:add
+  - yes | git push heroku master
+  - if git log ${TRAVIS_COMMIT_RANGE} | grep -E '\[migrations\]'; then heroku run rake db:migrate --app ${HEROKU_APP}; fi
 env:
   global:
-    - DB=mysql
-    - secure: "clGb47bKcIUbCHn5oajm8zv8JF9uB1dghdmm9/yxsV+RzWwOTk7gcvESJuxnAKeNawnaP+expcq6RKG4PBNZzLdJVjbZqjPcVjvwknsiYaVKYZHRg0tqcXYoISoHk7t+zJ5OldfDq9NXevqMPSFYVdCg9whWKjQfnFbxizax67I="
-    - secure: "cHK+F9dn92vX7Yl/aILWEvxmLUsUkkut3xsz/iawjfEYRpTnEuh4kc6OhSHvzxzk7+NjJmmwc6EfFJAHzdYTN+3c8wW3AINCTfvfB9A2UYkC54NzUKOmUe+rbMMIxDTVmE709DnFAkO58S/bE0sSDO/NHtm/aLVJtn+CLBGt0to="
-    - secure: "gqiZNyoRN994VnkWiue+D8GCzWEKUzPr+B8oU6GPbaj0/sIfGhBGm8fkTXD5lZU2xSYxMkkr8saxT5xfPw1KdHvbnBRlIh0bwza0iA5oPEK3KOGn1aAO0fmPAHC1mMxlwkRQE5VYr1YJOnFc1eThrXrGq0opUomc1KcorohKl54="
+    - secure: "DIPgDy3G3uR/4fye/47W7BsCfJ9KkEMyTxrfnPaLn73zBnjwP1UQ3bwZuOabfnPTF7Y1ctM4LsKcAAkm64WrZxEQZqhkcfyZ4Z5FV4RBYa3Lw6XGHGKeJq5qeg1oxAtFv8LUq7eguGsnVXmeWRyVIyN/hfih9Fc1nYmFYCts2qI="
+    - secure: "a3CG4O5CrwL68xPhkGSvhe2j/KKen3eqnzVs4jEGnSZ0PKHtrhGQ19WU6zaHyaEQCVf7ABJOdDYwH5I7PWt5pB2mHylxcwiN+odq1FkU65ImpcGTSCR0k0XyndtPLVOIqqMoSIcfEYjDnUHf7bmNul+C8PlV7kpD2mGpw/wWxww="
+    - DB=postgresql
 git:
   submodules: false
 language: ruby

@@ -1,0 +1,13 @@
+default: &default
+  adapter: postgresql
+  username: cdelhaye
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: karotz-ci_development
+
+test:
+  <<: *default
+  database: karotz-ci_production
