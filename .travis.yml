@@ -5,11 +5,12 @@ before_script:
 after_success:
   - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
   - git remote add heroku git@heroku.com:${HEROKU_APP}.git
+  - ssh-keygen -t rsa -C 'deploy@travis-ci.org' -f ~/.ssh/travis -N ''
   - echo 'Host heroku.com' >> ~/.ssh/config
+  - echo '   IdentityFile ~/.ssh/travis' >> ~/.ssh/config
   - echo '   StrictHostKeyChecking no' >> ~/.ssh/config
   - echo '   CheckHostIP no' >> ~/.ssh/config
   - echo '   UserKnownHostsFile=/dev/null' >> ~/.ssh/config
-  - ssh-keygen -t rsa -C 'deploy@travis-ci.org' -f ~/.ssh/travis -N ''
   - heroku keys:add ~/.ssh/travis.pub
   - yes | git push heroku master
   - if git log ${TRAVIS_COMMIT_RANGE} | grep -E '\[migrations\]'; then heroku run rake db:migrate --app ${HEROKU_APP}; fi
