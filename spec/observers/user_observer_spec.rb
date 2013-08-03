@@ -19,11 +19,10 @@ describe UserObserver do
   describe 'private methods' do
     describe '#create_in_campaign_list' do
 
-      let(:mail_chimp)       { Hominid.const_set(:API, mail_chimp_class) }
+      let(:mail_chimp)       { stub_const('Mailchimp::API', mail_chimp_class) }
       let(:mail_chimp_class) do
         mail_chimp_class = Class.new { def initialize(_); end }
-        mail_chimp_class.any_instance.stub(:find_list_id_by_name)
-        mail_chimp_class.any_instance.stub(:list_subscribe)
+        mail_chimp_class.any_instance.stub(:listSubscribe)
 
         mail_chimp_class
       end
@@ -31,7 +30,7 @@ describe UserObserver do
       context 'when the environment variable is not set' do
         it 'does not call #list_subscribe on mailchimp' do
           ENV['MAILCHIMP_APIKEY'] = nil
-          mail_chimp.any_instance.should_not_receive(:list_subscribe)
+          mail_chimp.any_instance.should_not_receive(:listSubscribe)
 
           user_observer.send(:create_in_campaign_list, user)
         end
@@ -40,7 +39,7 @@ describe UserObserver do
       context 'when the environment variable is set' do
         it 'calls #list_subscribe on mailchimp' do
           ENV['MAILCHIMP_APIKEY'] = 'a secreat API key'
-          mail_chimp.any_instance.should_receive(:list_subscribe)
+          mail_chimp.any_instance.should_receive(:listSubscribe)
 
           user_observer.send(:create_in_campaign_list, user)
         end

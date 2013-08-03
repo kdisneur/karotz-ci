@@ -10,11 +10,18 @@ class KarotzRabbitObserver < ActiveRecord::Observer
 private
 
   def update_campaign_list(model)
-    if ENV['MAILCHIMP_APIKEY']
-      mailchimp = Hominid::API.new(ENV['MAILCHIMP_APIKEY'])
-      list_id   = mailchimp.find_list_id_by_name('Users')
-      info      = { KAROTZ_CNT: model.karotz_rabbit.user.karotz_rabbits.size }
-      mailchimp.list_subscribe(list_id, model.karotz_rabbit.user.email, info, 'html', false, true, false, false)
-    end
+    return unless ENV['MAILCHIMP_APIKEY']
+
+    mailchimp = Mailchimp::API.new(ENV['MAILCHIMP_APIKEY'])
+    mailchimp.listSubscribe(
+      id:                ENV['MAILCHIMP_USER_LIST_ID'],
+      email_address:     model.user.email,
+      merge_vars:        { KAROTZ_CNT: model.user.karotz_rabbits.size },
+      email_type:        'html',
+      double_optin:      false,
+      update_existing:   true,
+      replace_interests: false,
+      send_welcome:      false
+    )
   end
 end
