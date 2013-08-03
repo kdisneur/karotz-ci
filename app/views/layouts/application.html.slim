@@ -1,4 +1,4 @@
-doctype
+doctype html
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
@@ -8,6 +8,7 @@ doctype
     meta charset="utf-8"
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     title = content_for?(:title) ? "#{yield(:title)} - Karotz-CI" : 'Karotz-CI, continuous integration can be fun'
+    meta name="description" content="#{content_for?(:meta_description) ? "#{yield(:meta_description)}" : 'The perfect tool to add some fun during you development process. Use your Karotz coupled with Travis or Semaphore'}"
     = stylesheet_link_tag    'application'
     = csrf_meta_tags
 
