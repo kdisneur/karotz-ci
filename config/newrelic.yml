@@ -1,6 +1,6 @@
 common: &default_settings
   license_key: <%= ENV['NEW_RELIC_LICENSE_KEY'] %>
-  app_name: karotz-ci.org
+  app_name: Karotz-CI
   monitor_mode: true
   developer_mode: false
   log_level: info
