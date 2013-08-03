@@ -9,10 +9,11 @@ after_success:
   - echo '   StrictHostKeyChecking no' >> ~/.ssh/config
   - echo '   CheckHostIP no' >> ~/.ssh/config
   - echo '   UserKnownHostsFile=/dev/null' >> ~/.ssh/config
-  - heroku keys:clear
-  - yes | heroku keys:add
+  - ssh-keygen -t rsa -C 'deploy@travis-ci.org' -f ~/.ssh/travis -N ''
+  - heroku keys:add ~/.ssh/travis.pub
   - yes | git push heroku master
   - if git log ${TRAVIS_COMMIT_RANGE} | grep -E '\[migrations\]'; then heroku run rake db:migrate --app ${HEROKU_APP}; fi
+  - heroku keys:remove deploy@travis-ci.org
 env:
   global:
     - secure: "DIPgDy3G3uR/4fye/47W7BsCfJ9KkEMyTxrfnPaLn73zBnjwP1UQ3bwZuOabfnPTF7Y1ctM4LsKcAAkm64WrZxEQZqhkcfyZ4Z5FV4RBYa3Lw6XGHGKeJq5qeg1oxAtFv8LUq7eguGsnVXmeWRyVIyN/hfih9Fc1nYmFYCts2qI="
